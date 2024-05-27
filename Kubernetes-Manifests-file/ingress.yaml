@@ -4,11 +4,12 @@ metadata:
   name: mainlb
   namespace: three-tier
   annotations:
+    ingressClassName: alb
     alb.ingress.kubernetes.io/scheme: internal
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    kubernetes.io/role/internal-elb: 1
 spec:
-  ingressClassName: alb
   rules:
     - host: backend.itssingh.online
       http:
