@@ -11,8 +11,8 @@ metadata:
     kubernetes.io/role/internal-elb: 1
 spec:
   rules:
-    - host: backend.itssingh.online
-      http:
+   
+    - http:
         paths:
           - path: /api
             pathType: Prefix
