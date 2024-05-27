@@ -10,7 +10,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: itssingh.online
+    - host: test.itssingh.online
       http:
         paths:
           - path: /api
