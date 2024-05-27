@@ -14,7 +14,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /*
+          - path: /api
             backend:
               serviceName: api
               servicePort: 3500
