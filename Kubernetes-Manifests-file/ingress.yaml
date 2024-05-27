@@ -1,23 +1,25 @@
----
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: alb-demo-ingress
+  name: mainlb
+  namespace: three-tier
   annotations:
-    kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
-    alb.ingress.kubernetes.io/healthcheck-port: http-healthcheck
-    alb.ingress.kubernetes.io/healthcheck-path: /healthcheck
 spec:
+  ingressClassName: alb
   rules:
-    - http:
+    - host: backend.abiolamajek.net
+      http:
         paths:
           - path: /api
+            pathType: Prefix
             backend:
-              serviceName: api
-              servicePort: 3500
+              service:
+                name: api
+                port:   
+                  number: 3500
           - path: /
             pathType: Prefix
             backend:
@@ -25,3 +27,4 @@ spec:
                 name: frontend
                 port: 
                   number: 3000
+      
