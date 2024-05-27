@@ -1,17 +1,17 @@
 ---
-apiVersion: networking.k8s.io/v1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: mainlb
   namespace: three-tier
   annotations:
+    kubernetes.io/ingress.class: alb  
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/subnets: subnet-a, subnet-b, subnet-c
-spec:
-  ingressClassName: alb
+spec: 
   rules:
-    - host: backend.abiolamajek.net
+    - host: test.itssingh.online
       http:
         paths:
           - path: /api
